@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.cnkvha</groupId>
+  <artifactId>SinaWeiboSpider</artifactId>
+  <name>SinaWeiboSpider</name>
+  <version>0.0.1-SNAPSHOT</version>
+  <build>
+    <defaultGoal>clean package</defaultGoal>
+    <resources>
+      <resource>
+        <directory>${project.basedir}/src/main/resources</directory>
+      </resource>
+    </resources>
+    <directory>${project.basedir}/target</directory>
+    <finalName>SinaWeiboSpider-${project.version}</finalName>
+    <plugins>
+      <plugin>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>2.1</version>
+        <configuration>
+          <archive>
+            <manifestEntries>
+              <Main-Class>com.cnkvha.spider.sinaweibo.SpiderMain</Main-Class>
+              <Implementation-Title>${project.name}</Implementation-Title>
+              <Implementation-Version />
+              <Implementation-Vendor>SinaWeiboSpider</Implementation-Vendor>
+              <Specification-Title>SinaWeiboSpider</Specification-Title>
+              <Specification-Version>1.0.0</Specification-Version>
+              <Specification-Vendor>TOBIAS WANG</Specification-Vendor>
+              <Sealed>true</Sealed>
+            </manifestEntries>
+            <manifestSections>
+              <manifestSection>
+                <name>org/dragonet/spider/sinaweibo</name>
+                <manifestEntries>
+                  <Sealed>true</Sealed>
+                </manifestEntries>
+              </manifestSection>
+            </manifestSections>
+          </archive>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>2.3</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+            <configuration>
+              <artifactSet>
+                <excludes>
+                  <exclude>junit:junit</exclude>
+                </excludes>
+              </artifactSet>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.1</version>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  <dependencies>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.14.8</version>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+</project>
+
