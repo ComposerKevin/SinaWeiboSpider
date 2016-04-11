@@ -1,0 +1,2 @@
+# SinaWeiboSpider
+For a challange. 
